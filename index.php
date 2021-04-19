@@ -37,6 +37,7 @@
                 $type = "email";
                 $value = $_POST['info'];
             }
+            $_SESSION['search'] = $value;
 
             $sql = "SELECT * from users where ".$type." = :id";
             $stmt = $pdo->prepare($sql);
@@ -44,6 +45,7 @@
             ':id'=> $value
             ));
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
             if($row == false){
                 $_SESSION['error']=$_POST['info'].' is not in the record.<br/>Congrats!! You are safe';
                 header("Location: index.php");
@@ -61,6 +63,7 @@
 
 
     }
+    require 'count.php';
 ?>
 
 
@@ -72,7 +75,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hack checker by Danial</title>
+    <title>khOOj</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
