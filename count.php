@@ -2,7 +2,7 @@
     // if(!isset($_SESSION)) session_start();
 
     require_once "pdo.php";
-    if(isset($_COOKIE['old_count']) && $_SESSION['visit_count'] - $_COOKIE['old_count'] >10-2 ){
+    if(isset($_COOKIE['old_count']) && $_SESSION['visit_count'] - $_COOKIE['old_count'] >1000-2 ){
         setcookie("limit",  "limit exceeded" , time() + (86400), "/");
         setcookie("old_count", $_SESSION['visit_count'] , time() + (86400*365), "/");
     }
