@@ -22,7 +22,6 @@
     $_SESSION['visit_count'] = $visit;
     $_SESSION['ip_address'] = $visitor_ip;
 
-    require 'count.php';
     require_once 'pdo.php';
     
 
@@ -47,12 +46,12 @@
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if($row == false){
-                $_SESSION['error']=$_POST['info'].' is not in the record.<br/>Congrats!! You are safe';
+                $_SESSION['error']='<b>Congrats!! You are safe</b><br/>'.$_POST['info'].' is not found in the record';
                 header("Location: index.php");
                 return;
             }
             else{
-                $_SESSION['success']='Oopss!!!<br/>'. $_POST['info'].' is found in the record.<br>Your Facebook name is <b class="text-dark bg-success p-1">'.$row['name'].'</b>
+                $_SESSION['success']='Oopss!!!<br/>'. $_POST['info'].' is found in the record.<br>Your Facebook name is</br> <b class="text-dark bg-success p-1">'.$row['name'].'</b>
                 <br/><a href="view.php" class="btn btn-dark mt-2">View Details</a>';
                 $_SESSION['row'] = $row;
                 header("Location: index.php");
@@ -78,9 +77,7 @@
     <title>khOOj</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <div class="container-fluid">
@@ -117,6 +114,9 @@
                         <a class="nav-link" href="hiw.php">How it works</a>
                     </li> -->
                     <li class="nav-item">
+                        <a class="nav-link" href="mailto:md.danialislam@gmail.com"><img class="logo" src="assets/img/gmail.png" alt="github_logo"></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="https://github.com/danialcodes"><img class="logo" src="assets/img/github.png" alt="github_logo"></a>
                     </li>
                     <li class="nav-item">
@@ -133,7 +133,7 @@
 
         <div class="bg-warning m-5 ">
             <div class="d-flex justify-content-center p-4 ">
-                <b>Check if your data is compromised in the recent facebook data breach or not</b> 
+                <b class="text-justify">Check if your data is compromised in the recent facebook data breach or not</b> 
             </div>
             <form action="" class="mx-5 mt-5 bg-info" method="post">
                 <div class="form-group row d-flex justify-content-center p-3">
@@ -157,11 +157,11 @@
             <div class="d-flex justify-content-center ">
             <?php
                 if(isset($_SESSION['error'])){
-                    echo'<div class="bg-success text-white mx-5 w-50 h-50 p-2 text-center" >'.$_SESSION['error'].'</div>';
+                    echo'<div class="bg-success text-white mx-5 h-50 p-2 text-center" >'.$_SESSION['error'].'</div>';
                     unset($_SESSION['error']);
                 }
                 if(isset($_SESSION['success'])){
-                    echo'<div class="bg-danger text-white mx-5   h-50 p-2 text-center " >'.$_SESSION['success'].'</div>';
+                    echo'<div class="bg-danger text-white mx-5   h-50 p-2 text-center text-justify " >'.$_SESSION['success'].'</div>';
                     unset($_SESSION['success']);
                 }
             ?>
@@ -174,6 +174,9 @@
 
     </div>
 
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="script/script.js"></script>
 </body>
 </html>
